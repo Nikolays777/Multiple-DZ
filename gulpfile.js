@@ -9,7 +9,7 @@ let gulp = require('gulp'),
 
 
 gulp.task('clean', async function(){
-  del.sync('dist')
+  del.sync('dist');
 })
 
 gulp.task('scss', function(){
@@ -20,7 +20,7 @@ gulp.task('scss', function(){
     }))
     .pipe(rename({suffix: '.min'}))
     .pipe(gulp.dest('app/css'))
-    .pipe(browserSync.reload({stream: true}))
+    .pipe(browserSync.reload({stream: true}));
 });
 
 gulp.task('css', function(){
@@ -33,17 +33,17 @@ gulp.task('css', function(){
   ])
     .pipe(concat('_libs.scss'))
     .pipe(gulp.dest('app/scss'))
-    .pipe(browserSync.reload({stream: true}))
+    .pipe(browserSync.reload({stream: true}));
 });
 
 gulp.task('html', function(){
   return gulp.src('app/*.html')
-  .pipe(browserSync.reload({stream: true}))
+  .pipe(browserSync.reload({stream: true}));
 });
 
 gulp.task('script', function(){
   return gulp.src('app/js/*.js')
-  .pipe(browserSync.reload({stream: true}))
+  .pipe(browserSync.reload({stream: true}));
 });
 
 gulp.task('js', function(){
@@ -57,7 +57,7 @@ gulp.task('js', function(){
     .pipe(concat('libs.min.js'))
     .pipe(uglify())
     .pipe(gulp.dest('app/js'))
-    .pipe(browserSync.reload({stream: true}))
+    .pipe(browserSync.reload({stream: true}));
 });
 
 gulp.task('browser-sync', function() {
@@ -88,9 +88,9 @@ gulp.task('export', function(){
 gulp.task('watch', function(){
   gulp.watch('app/scss/**/*.scss', gulp.parallel('scss'));
   gulp.watch('app/*.html', gulp.parallel('html'))
-  gulp.watch('app/js/*.js', gulp.parallel('script'))
+  gulp.watch('app/js/*.js', gulp.parallel('script'));
 });
 
-gulp.task('build', gulp.series('clean', 'export'))
+gulp.task('build', gulp.series('clean', 'export'));
 
 gulp.task('default', gulp.parallel('css' ,'scss', 'js', 'browser-sync', 'watch'));
